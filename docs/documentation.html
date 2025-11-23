@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="kvantum-bloch-g%C3%B6mb-szimul%C3%A1tor">Kvantum Bloch Gömb Szimulátor</h1>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+<h2 id="bevezet%C3%A9s">Bevezetés</h2>
+<p>Ez a projekt egy interaktív webes szimulátor, amely megmutatja, hogyan viselkednek a kvantumbitek (qubitek) a Bloch-gömb segítségével. A program különböző kvantumkapukat (X, Y, Z, Hadamard, forgatások) tud alkalmazni, és láthatjuk, hogyan változik az állapot a 3D térben.</p>
+<img src="./screenshot.png" width="400" alt="Alkalmazás képernyőképe">
+*A szimulátor főképernyője: bal oldalon a Bloch-gömb, jobb oldalon a vezérlők*
+<h2 id="mi-az-a-bloch-g%C3%B6mb">Mi az a Bloch-gömb?</h2>
+<p>A qubit állapota a klasszikus bittől eltérően nem csak 0 vagy 1 lehet, hanem ezek szuperpozíciója is. Ezt matematikailag így írjuk:</p>
+<p>$$
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle
+$$</p>
+<p>ahol $|\alpha|^2 + |\beta|^2 = 1$ (normalizálás).</p>
+<p>A Bloch-gömb egy egységsugarú gömb, amelyen minden pont egy qubit állapotot jelöl. Két szöggel írható le az állapot:</p>
+<p>$$
+|\psi\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\left(\frac{\theta}{2}\right)|1\rangle
+$$</p>
+<img src="./bloch_sphere.png" width="300" alt="Bloch-gömb ábra">
+*A Bloch-gömb: az északi pólus a |0⟩, a déli pólus a |1⟩ állapot*
+<h2 id="kvantumkapuk">Kvantumkapuk</h2>
+<p>A kvantumkapuk olyan műveletek, amelyek megváltoztatják a qubit állapotát. Minden kapu a Bloch-gömbön egy forgatásnak felel meg.</p>
+<h3 id="pauli-kapuk">Pauli-kapuk</h3>
+<p>A Pauli-kapuk 180°-os forgatások a gömb tengelyei körül:</p>
+<p><strong>X kapu (NOT):</strong> Megcseréli a |0⟩ és |1⟩ állapotokat (X tengely körüli forgatás)</p>
+<p>$$
+X = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}
+$$</p>
+<p><strong>Y kapu:</strong> Y tengely körüli forgatás</p>
+<p>$$
+Y = \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}
+$$</p>
+<p><strong>Z kapu:</strong> Fázisfordítás (Z tengely körüli forgatás)</p>
+<p>$$
+Z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}
+$$</p>
+<img src="./pauli_gates.png" width="400" alt="Pauli kapuk hatása">
+*Példa: A Pauli-Y kapu hatása, amely az Y tengely körül forgat 180 fokot.*
+<h3 id="hadamard-kapu">Hadamard kapu</h3>
+<p>A Hadamard kapu szuperpozíciót hoz létre:</p>
+<p>$$
+H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}
+$$</p>
+<img src="./hadamard.png" width="400" alt="Hadamard kapu">
+*A Hadamard kapu szuperpozícióba viszi a qubitet.*
+<h3 id="forgat%C3%B3-kapuk">Forgató kapuk</h3>
+<p>Tetszőleges szöggel forgathatunk a tengelyek körül:</p>
+<p>$$
+R_x(\gamma) = \begin{pmatrix} \cos\frac{\gamma}{2} &amp; -i\sin\frac{\gamma}{2} \\ -i\sin\frac{\gamma}{2} &amp; \cos\frac{\gamma}{2} \end{pmatrix}
+$$</p>
+<p>$$
+R_y(\gamma) = \begin{pmatrix} \cos\frac{\gamma}{2} &amp; -\sin\frac{\gamma}{2} \\ \sin\frac{\gamma}{2} &amp; \cos\frac{\gamma}{2} \end{pmatrix}
+$$</p>
+<p>$$
+R_z(\gamma) = \begin{pmatrix} e^{-i\frac{\gamma}{2}} &amp; 0 \\ 0 &amp; e^{i\frac{\gamma}{2}} \end{pmatrix}
+$$</p>
+<img src="./rotations.png" width="400" alt="Forgatások">
+*Példa: 45°-os forgatás az X tengely körül (Rx 45°).*
+<h2 id="haszn%C3%A1lat">Használat</h2>
+<p>A program két részre oszlik:</p>
+<p><strong>Bal oldal - Vizualizáció:</strong></p>
+<ul>
+<li>3D-s Bloch-gömb</li>
+<li>Piros nyíl = aktuális qubit állapot</li>
+<li>Egérrel forgatható és zoomolható</li>
+<li>Felső sarokban: θ és φ szögek</li>
+<li>Alul: az állapotvektor matematikai alakja</li>
+</ul>
+<img src="./controls.png" width="300" alt="Vezérlőpult">
+*A jobb oldali vezérlőpanel: csúszkák, kapuk és forgatások.*
+<p><strong>Jobb oldal - Vezérlők:</strong></p>
+<ol>
+<li><strong>Csúszkák:</strong> θ és φ szögek beállítása</li>
+<li><strong>Kapu gombok:</strong> X, Y, Z, H műveletek</li>
+<li><strong>Forgatás:</strong> Tetszőleges szögű Rx, Ry, Rz</li>
+<li><strong>Előzmények:</strong> Végrehajtott műveletek listája</li>
+<li><strong>Demo:</strong> Automatikus bemutató</li>
+</ol>
+<h2 id="technikai-megval%C3%B3s%C3%ADt%C3%A1s">Technikai megvalósítás</h2>
+<p>A projekt egy modern webes alkalmazás:</p>
+<ul>
+<li><strong>React 19</strong> - Keretrendszer</li>
+<li><strong>TypeScript</strong> - Típusbiztos programozás</li>
+<li><strong>Three.js</strong> - 3D grafika (WebGL)</li>
+<li><strong>Material UI</strong> - Modern felhasználói felület</li>
+<li><strong>Vite</strong> - Gyors build rendszer</li>
+</ul>
+<img src="./code_structure.png" width="200" alt="Kódstruktúra">
+*A projekt fájlszerkezete*
+<p>A matematikai számításokat (<code>quantumMath.ts</code>) külön modullal oldottuk meg, ami mátrixszorzásokkal hajtja végre az állapot-transzformációkat.</p>
+<h2 id="telep%C3%ADt%C3%A9s">Telepítés</h2>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/boriszbandi/blochHF.git
+<span class="hljs-built_in">cd</span> blochHF
+npm install
+npm run dev
+</div></code></pre>
+<p><strong>Standalone verzió készítése:</strong></p>
+<pre class="hljs"><code><div>npm run build
+</div></code></pre>
+<p>A <code>dist/index.html</code> egyetlen fájlként tartalmazza az egész alkalmazást, szerver nélkül is használható.</p>
+
+</body>
+</html>

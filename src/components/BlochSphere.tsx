@@ -185,7 +185,7 @@ export default function BlochSphere({ theta, phi, isAnimating = false }: Readonl
       while (deltaPhi > Math.PI) deltaPhi -= 2 * Math.PI;
       while (deltaPhi < -Math.PI) deltaPhi += 2 * Math.PI;
       
-      currentPhi.current += deltaPhi * 0.01;
+      currentPhi.current += deltaPhi * 0.1;
 
       // Nyíl frissítése az interpolált szögekkel
       if (arrowRef.current) {
@@ -204,7 +204,7 @@ export default function BlochSphere({ theta, phi, isAnimating = false }: Readonl
         const points = trailPointsRef.current;
         
         // Csak akkor adunk hozzá pontot, ha elmozdultunk (hogy ne legyen túl sűrű)
-        if (points.length === 0 || (points.at(-1)?.distanceTo(newPos) ?? Infinity) > 0.01) {
+        if (points.length === 0 || (points.at(-1)?.distanceTo(newPos) ?? Infinity) > 0.1) {
           points.push(newPos);
           // Limitáljuk a hosszt, hogy ne legyen végtelen, de elég hosszú legyen a mozgáshoz
           if (points.length > 200) points.shift();
